@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Latihan</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <!-- insert vue -->
+    <script src="assets/js/vue.min.js"></script>
+    <div class="container">
+
+        <div id="app">
+            <h1 v-once>{{pesan}}</h1>
+            <h3>{{sayHello()}}</h3>
+            <p>{{pesan}} - <a v-bind:href="link">Udemy</a></p>
+            <p v-html="finishedLink"></p>
+        </div>
+
+        <div id="app2">
+            <h2 v-bind:title="pesan">
+                Hover aku! Lihat yang terjadi
+            </h2>
+        </div>
+
+        <div id="app3">
+            <h3 v-if="lihat">
+                Tulisan ini terlihat
+            </h3>
+        </div>
+
+        <div id="app4">
+            <ul>
+                <li v-for="urutan in urutans">
+                    {{urutan.x}}
+                </li>
+            </ul>
+        </div>
+
+        <div id="app5">
+            <h4>{{pesan}}</h4>
+            <button class="btn btn-success" v-on:click="balik">BALIK</button>
+        </div>
+
+        <div id="app6" class="mt-2">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input v-model="pesan" type="text" class="form-control" aria-label="Username"
+                    aria-describedby="basic-addon1">
+            </div>
+            <h3>{{pesan}}</h3>
+        </div>
+
+        <!-- Komponen dinamis -->
+        <div id="app7">
+            <ol>
+                <todo-item v-for="item in list" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+            </ol>
+        </div>
+
+        <div id="app8">
+            <button v-on:click="tambah(2, $event)">Tekan aku</button>
+            <h4>{{hitung}}</h4>
+
+            <button v-on:click="hitung++">Tambah</button>
+            <h2>{{hitung * 2 > 10 ? 'Besar' : 'Kecil'}}</h2>
+            <p v-on:mousemove="cekKordinat">Kordinat (x/y) : {{x}} / {{y}}
+                - <span v-on:mousemove.stop="">Reset</span>
+            </p>
+            <input type="text" v-on:keyup.enter="alertMe">
+        </div>
+
+        <div id="app9">
+            <button v-on:click="counter++">tambah</button>
+            <button v-on:click="counter--">kurang</button>
+            <h3>{{counter}} | {{output}}</h3>
+            <div class="demo" @click="attachRed = !attachRed"
+            :class="divClasses">
+        </div>
+            <div class="demo" :class="{red:attachRed}"></div>
+            <div class="demo" :class="[color,{red:attachRed}]"></div>
+            <div class="demo" :style="[styleKu,{backgroundColor:color}]"></div>
+            <input type="text" v-model="color">
+            <input type="text" v-model="width">
+        </div>
+    </div>
+
+    <div id="app10">
+        <h3 v-if="show">Klik button aku akan hilang!</h3>
+        <h3 v-else>sekarang aku yang terlihat</h3>
+        <h3 v-show="show">Aku terlihat</h3>
+        <button @click="show = !show">swoosh</button>
+
+        <div>
+            <ul>
+                <li v-for="(buah, index) in buahs">{{buah}} ({{index}})</li>
+            </ul>
+
+            <ul>
+                <li v-for="orang in orangs">{{orang.name}}</li>
+            </ul>
+
+            <ul>
+                <li v-for="(orang in orangs">
+                    <span v-for="(value,key) in orang">
+                        {{key}} : {{value}}<div></div>
+                    </span>
+                </li>
+            </ul>
+
+            <ul>
+                <li v-for="n in 5">{{n}}</li>
+            </ul>
+
+            <template v-for="(buah, index) in buahs">
+                <h5>{{buah}}</h5>
+                <h6>{{index}}</h6>
+            </template>
+        </div>
+
+        <div>
+            <ul>
+                <li v-for="buah in buahs" ::key="buah">{{buah}}</li>
+            </ul>
+            <input type="text" v-model="buahan">
+            <button @click="buahs.push(buahan)">tambah</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="assets/js/index.js"></script>
+</body>
+
+</html>
