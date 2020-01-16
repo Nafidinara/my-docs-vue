@@ -148,6 +148,10 @@ var app9 = new Vue({
     },
 })
 
+Vue.component('hello',{
+    template:'<h2>aku alfara</h2>'
+});
+
 var app10 = new Vue({
     el : '#app10',
     data:{
